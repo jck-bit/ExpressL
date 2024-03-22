@@ -43,8 +43,7 @@ export enum TokenType {
     "@fn": TokenType.Fn,
     when:TokenType.If,
     traverse: TokenType.For,
-    otherwise: TokenType.Else    
-
+    otherwise: TokenType.Else
   };
   
  /**

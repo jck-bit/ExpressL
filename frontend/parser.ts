@@ -126,7 +126,7 @@ parse_for_statement(): Stmt {
 }
   
 parse_if_statement(): Stmt {
-  this.eat(); // eat if keyword
+  this.eat(); // eat when keyword
   this.expect(TokenType.OpenParen, "Opening parenthesis (\"(\") expected following \"when\" statement.");
 
   const test = this.parse_expr();
