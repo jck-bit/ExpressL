@@ -1,0 +1,15 @@
+
+@fn try (x,y) {
+   attempt{
+    let result = x+ y;
+
+    print(result)
+} rescue{
+    print(error)
+}
+}
+
+print(try(10,5))
+
+
+print("hello")

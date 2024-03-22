@@ -1,0 +1,8 @@
+{
+    "deno.config": "/home/kinyanjui-yurs/.deno/bin/deno",
+    "deno.enable": true,
+    "deno.lint": false,
+    "deno.suggest.imports.hosts": {
+        
+    },
+}
