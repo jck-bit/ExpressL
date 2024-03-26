@@ -1,6 +1,6 @@
 # ExpressL custom scripting Language
+ I made this compiler in typescript, i imagine building it in Rust or C, right now am learning Rust, I might consider remaking the compiler in it maybe in the future.
 
-This compiler is developed using Typescript.
 ## Hello World Example
 
 To print "hello world" in ExpressL, use the `print()` function:
