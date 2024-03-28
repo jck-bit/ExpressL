@@ -1,5 +1,39 @@
+print("hello world")
 
 
-traverse(let i = 0; i < 10; i++){
-    print(strcon("Currently at ", i))
+let foo = 45;
+let bar = 56;
+let foobar = foo + bar;
+print(foobar)
+
+
+@fn hello() {
+    print("my new function")
+}
+
+
+hello()
+
+@fn my_first_function (x,y) {
+   attempt{
+    let result = x+ y;
+    print(result)
+} rescue{
+    print(error)
+}}
+
+print(my_first_function(10,5))
+
+
+
+let x = 10;
+
+when (x > 10) {
+    print("x is greater than 10")
+} otherwise {
+    when (x < 10) {
+        print("x is less than 10")
+    } otherwise {
+        print("x is equal to 10")
+    }
 }
