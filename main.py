@@ -24,8 +24,6 @@ print(s.twoSum([3, 2, 4], 6))
 #Remove Duplicates from sorted list
 
 # Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
-
-
 class Solution(object):
     def deleteDuplicates(self, head):
         """
@@ -90,7 +88,7 @@ class Solution(object):
 # Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
 
 class Solution(object):
-    def isSymmetric(self, root):
+    def isSymmetric(self, root): 
         """
         :type root: TreeNode
         :rtype: bool

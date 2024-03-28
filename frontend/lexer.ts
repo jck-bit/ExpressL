@@ -44,6 +44,13 @@ export enum TokenType {
     when:TokenType.If,
     traverse: TokenType.For,
     otherwise: TokenType.Else
+
+    // let: TokenType.Let,
+    // const: TokenType.Const,
+    // "@fn": TokenType.Fn,
+    // if: TokenType.If,
+    // else: TokenType.Else,
+    // for: TokenType.For,
   };
   
  /**
