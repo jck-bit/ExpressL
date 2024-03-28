@@ -17,22 +17,22 @@ async function run(filename: string){
     // console.log(result)
 }
 
-async function  repl() {
-    const parser = new Parser()
-    const env = createGlobalEnv()
+// async function  repl() {
+//     const parser = new Parser()
+ //   const env = createGlobalEnv()
 
-    console.log("\nRepl v0.1");
-    while (true) {
-        const input =  prompt(">> ")
+//     console.log("\nRepl v0.1");
+//     while (true) {
+//         const input =  prompt(">> ")
 
-        //check for no user input or exit keyword       
-        if (!input || input.includes("exit")) {
-            Deno.exit(1);
-        }   
+//         //check for no user input or exit keyword       
+//         if (!input || input.includes("exit")) {
+//             Deno.exit(1);
+//         }   
 
-        //produce AST from the source code
-        const program = parser.produceAST(input)
-        const result = evaluate(program, env)
-        // console.log(result)
-    }  
-}
+//         //produce AST from the source code
+//         const program = parser.produceAST(input)
+//         const result = evaluate(program, env)
+//         // console.log(result)
+//     }  
+// }

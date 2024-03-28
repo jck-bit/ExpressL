@@ -1,25 +1,5 @@
-print("hello world")
 
-let foo = 45;
-let bar = 56;
 
-let foobar = foo + bar;
-print(foobar)
-
-@fn hello() {
-    print("my new function")
+traverse(let i = 0; i < 10; i++){
+    print(strcon("Currently at ", i))
 }
-
-hello()
-
-@fn try (x,y) {
-   attempt{
-    let result = x+ y;
-
-    print(result)
-} rescue{
-    print(error)
-}
-}
-
-print(try(10,5))

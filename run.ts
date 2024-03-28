@@ -1,5 +1,5 @@
-import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, IfStatement, ForStatement, TryCatchStatement } from "./ast.ts";
-import { tokenize, Token, TokenType } from './lexer.ts';
+import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, IfStatement, ForStatement, TryCatchStatement } from "./ast";
+import { tokenize, Token, TokenType } from "./lexer";
 
 export default class Parser {
     private tokens: Token[] = [];
@@ -215,7 +215,7 @@ export default class Parser {
     
         const body = this.parse_block_statement();
     
-        if (this.at().value !== 'rescue') throw "\"attemmpt\" statement must be followed by a \"rescue\" statement."
+        if (this.at().value !== 'rescue') throw "\"attempt\" statement must be followed by a \"rescue\" statement."
     
         this.eat();
     
