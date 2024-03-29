@@ -53,12 +53,16 @@ print(try(10, 5))
 
 ## conditional statements
 
-Conditions in ExpressL use when...otherwise syntax. provide  conditions using `when` keyword and provide an alternative using the `otherwise` keyword
+Conditions in ExpressL use when...otherwise syntax. provide  conditions using `when` keyword and provide an alternative using the `otherwise` keyword. In this example, the nested `when...otherwise` block acts as an `else if` structure
 
 ```typescript
-when (true){
-    print("This is my first conditional statement")
+when (x > 10) {
+    print("x is greater than 10")
 } otherwise {
-    print("code to execute if condition is false")
+    when (x < 10) {
+        print("x is less than 10")
+    } otherwise {
+        print("x is equal to 10")
+    }
 }
 ```
