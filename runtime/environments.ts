@@ -1,5 +1,4 @@
-import { MK_BOOL,MK_NUMBER, MK_NULL,MK_NATIVE_FN, RuntimeVal, MK_STRING, StringVal } from "./values.ts";
-
+import { MK_BOOL,MK_NUMBER, MK_NULL,MK_NATIVE_FN, RuntimeVal, MK_STRING, StringVal, ObjectVal } from "./values.ts";
 
 export function createGlobalEnv() {
     
@@ -17,6 +16,36 @@ export function createGlobalEnv() {
     }), true)
     
     env.declareVar("error", MK_NULL(), false);
+
+    env.declareVar("strcon", MK_NATIVE_FN((args,) => {
+        let res = '';
+
+        for (let i = 0; i < args.length; i++) {
+            const arg = args[i] as StringVal;
+
+            res += arg.value;
+        }
+
+        return MK_STRING(res);
+    }), true)
+
+    env.declareVar("format", MK_NATIVE_FN((args) => {
+        const str = args.shift() as StringVal;
+
+        let res = '';
+
+        for (let i = 0; i < args.length; i++) {
+            const arg = args[i] as StringVal;
+
+            res = str.value.replace(/\${}/, arg.value);
+        }
+
+        if (!args[0]) throw "Second parameter in \"format\" missing."
+
+        return MK_STRING(res);
+    }), true)
+
+    
     
     return env;
 }
