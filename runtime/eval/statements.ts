@@ -1,4 +1,4 @@
-import { ForStatement, FunctionDeclaration, IfStatement, Stmt, TryCatchStatement } from "../../frontend/ast.ts";
+import { ForStatement, FunctionDeclaration, WhenStatement, Stmt, TryCatchStatement } from "../../frontend/ast.ts";
 import { Program, VarDeclaration } from "../../frontend/ast.ts";
 import Environment from "../environments.ts";
 import { evaluate } from "../interpreter.ts";
@@ -47,7 +47,7 @@ export function eval_var_declaration(
     return env.declareVar(declaration.name, fn, true);
   }
 
-export function eval_if_statement(declaration: IfStatement, env: Environment): RuntimeVal {
+export function eval_when_statement(declaration: WhenStatement, env: Environment): RuntimeVal {
   const test = evaluate(declaration.test, env);
 
   if ((test as BooleanVal).value === true) {
