@@ -4,7 +4,7 @@ export type NodeType =
       | "Program" 
       | "VarDeclaration"
       | "FunctionDeclaration"
-      | "IfStatement"
+      | "WhenStatement"
       | "ForStatement"
       | "TryCatchStatement"
       
@@ -115,8 +115,8 @@ export interface ForStatement extends Stmt {
     body: Stmt[];
   }
 
-  export interface IfStatement extends Stmt {
-    kind: "IfStatement";
+  export interface WhenStatement extends Stmt {
+    kind: "WhenStatement";
     test: Expr;
     body: Stmt[];
     alternate?: Stmt[];

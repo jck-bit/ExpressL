@@ -103,3 +103,8 @@ class Solution(object):
         if t1 and t2:
             return t1.val == t2.val and self.isMirror(t1.left, t2.right) and self.isMirror(t1.right, t2.left)
         return False
+
+
+
+dict = {4:"x", 5:"y", 6:"z"}
+print(dict.pop(5))

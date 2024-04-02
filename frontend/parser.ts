@@ -1,9 +1,9 @@
-import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, IfStatement, ForStatement, TryCatchStatement } from "./ast.ts";
+import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, WhenStatement, ForStatement, TryCatchStatement } from "./ast.ts";
 import { tokenize, Token, TokenType } from './lexer.ts';
 
 export default class Parser {
     private tokens: Token[] = [];
-
+ 
     private not_eof(): boolean {
         return this.tokens[0].type != TokenType.EOF;
     }
@@ -49,8 +49,8 @@ export default class Parser {
                 return this.parse_var_declaration();
             case TokenType.Fn:
                 return this.parse_fn_declaraton();
-            case TokenType.If:
-                return this.parse_if_statement();
+            case TokenType.When:
+                return this.parse_when_statement();
             case TokenType.For:
                 return this.parse_for_statement();
             default:
@@ -95,7 +95,7 @@ export default class Parser {
             body,
         } as ForStatement;
     }
-    parse_if_statement(): Stmt {
+    parse_when_statement(): Stmt {
         this.eat(); // eat if keyword
         this.expect(TokenType.OpenParen, "Opening parenthesis (\"(\") expected following \"when\" statement.");
 
@@ -110,19 +110,19 @@ export default class Parser {
         if (this.at().type == TokenType.Else) {
             this.eat(); // eat "else"
 
-            if (this.at().type == TokenType.If) {
-                alternate = [this.parse_if_statement()];
+            if (this.at().type == TokenType.When) {
+                alternate = [this.parse_when_statement()];
             } else {
                 alternate = this.parse_block_statement();
             }
         }
 
         return {
-            kind: 'IfStatement',
+            kind: 'WhenStatement',
             body: body,
             test,
             alternate
-        } as IfStatement;
+        } as WhenStatement;
     }
 
     parse_fn_declaraton(): Stmt {
