@@ -4,7 +4,7 @@ export enum TokenType {
     Identifier,
     String,
     When,
-    Else,
+    Otherwise,
     
     // Keywords
     Let,
@@ -42,7 +42,7 @@ export enum TokenType {
     const: TokenType.Const,
     "@fn": TokenType.Fn,
     when:TokenType.When,
-    otherwise: TokenType.Else
+    otherwise: TokenType.Otherwise
   };
   
  /**
