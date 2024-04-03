@@ -5,7 +5,6 @@ export type NodeType =
       | "VarDeclaration"
       | "FunctionDeclaration"
       | "WhenStatement"
-      | "ForStatement"
       | "TryCatchStatement"
       
       | "StringLiteral"
@@ -50,7 +49,6 @@ export interface FunctionDeclaration extends Stmt {
     parameters: string[];
     body: Stmt[];
    // async: boolean;
-
 }
 
 export interface Expr extends Stmt {
@@ -105,15 +103,6 @@ export interface ObjectLiteral extends Expr {
     kind: "ObjectLiteral";
     properties: Property[];
 }
-
-
-export interface ForStatement extends Stmt {
-    kind: "ForStatement";
-    init: VarDeclaration;
-    test: Expr;
-    update: AssignmentExpr;
-    body: Stmt[];
-  }
 
   export interface WhenStatement extends Stmt {
     kind: "WhenStatement";

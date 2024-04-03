@@ -1,4 +1,4 @@
-import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, WhenStatement, ForStatement, TryCatchStatement } from "./ast.ts";
+import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, WhenStatement,  TryCatchStatement } from "./ast.ts";
 import { tokenize, Token, TokenType } from './lexer.ts';
 
 export default class Parser {
@@ -51,8 +51,6 @@ export default class Parser {
                 return this.parse_fn_declaraton();
             case TokenType.When:
                 return this.parse_when_statement();
-            case TokenType.For:
-                return this.parse_for_statement();
             default:
                 return this.parse_expr();
         }
@@ -73,28 +71,6 @@ export default class Parser {
         return body;
     }
 
-    parse_for_statement(): Stmt {
-        this.eat(); // eat "for" keyword
-        this.expect(TokenType.OpenParen, "Opening parenthesis (\"(\") expected following \"traverse\" statement.");
-        const init = this.parse_var_declaration();
-        const test = this.parse_expr();
-
-        this.expect(TokenType.Semicolon, "Semicolon (\";\") expected following \"test expression\" in \"traverse\" statement.");
-
-        const update = this.parse_assignment_expr();
-
-        this.expect(TokenType.CloseParen, "Closing parenthesis (\")\") expected following \"additive expression\" in \"traverse\" statement.");
-
-        const body = this.parse_block_statement();
-
-        return {
-            kind: 'ForStatement',
-            init,
-            test,
-            update,
-            body,
-        } as ForStatement;
-    }
     parse_when_statement(): Stmt {
         this.eat(); // eat if keyword
         this.expect(TokenType.OpenParen, "Opening parenthesis (\"(\") expected following \"when\" statement.");
