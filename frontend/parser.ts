@@ -1,4 +1,4 @@
-import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, WhenStatement,  TryCatchStatement } from "./ast.ts";
+import { Stmt, Program, Expr, BinaryExpr, NumericLiteral, Identifier, VarDeclaration, AssignmentExpr, Property, ObjectLiteral, CallExpr, MemberExpr, FunctionDeclaration, StringLiteral, WhenStatement,  AttemptRescueStatement } from "./ast.ts";
 import { tokenize, Token, TokenType } from './lexer.ts';
 
 export default class Parser {
@@ -92,7 +92,13 @@ export default class Parser {
                 alternate = this.parse_block_statement();
             }
         }
-
+        
+        // console.log({
+        //     kind: 'WhenStatement',
+        //     body: body,
+        //     test,
+        //     alternate
+        // })
         return {
             kind: 'WhenStatement',
             body: body,
@@ -182,7 +188,7 @@ export default class Parser {
         return left;
     }
 
-    private parse_try_catch_expr(): Expr {
+    private parse_attempt_rescue_expr(): Expr {
         if (this.at().value !== 'attempt') {
             return this.parse_and_statement()
         }
@@ -198,15 +204,15 @@ export default class Parser {
         const alternate = this.parse_block_statement();
     
         return {
-            kind: "TryCatchStatement",
+            kind: "AttemptRescueStatement",
             body,
             alternate,
-        } as TryCatchStatement
+        } as AttemptRescueStatement
     }
 
     private parse_object_expr(): Expr {
         if (this.at().type !== TokenType.OpenBrace) {
-            return this.parse_try_catch_expr();
+            return this.parse_attempt_rescue_expr();
         }
 
         this.eat(); // advance past {

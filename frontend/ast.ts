@@ -5,7 +5,7 @@ export type NodeType =
       | "VarDeclaration"
       | "FunctionDeclaration"
       | "WhenStatement"
-      | "TryCatchStatement"
+      | "AttemptRescueStatement"
       | "StringLiteral"
 
       //literals
@@ -110,8 +110,8 @@ export interface ObjectLiteral extends Expr {
     alternate?: Stmt[];
   }
   
-  export interface TryCatchStatement extends Stmt {
-    kind: "TryCatchStatement";
+  export interface AttemptRescueStatement extends Stmt {
+    kind: "AttemptRescueStatement";
     body: Stmt[];
     alternate: Stmt[];
   }

@@ -1,7 +1,7 @@
 import { NumberVal, RuntimeVal, StringVal } from "./values.ts";
-import { BinaryExpr, NumericLiteral, Program, Stmt, Identifier,WhenStatement, VarDeclaration, AssignmentExpr, ObjectLiteral, CallExpr, FunctionDeclaration, ForStatement,  TryCatchStatement , StringLiteral} from "../frontend/ast.ts";
+import { BinaryExpr, NumericLiteral, Program, Stmt, Identifier,WhenStatement, VarDeclaration, AssignmentExpr, ObjectLiteral, CallExpr, FunctionDeclaration,   AttemptRescueStatement , StringLiteral} from "../frontend/ast.ts";
 import Environment from "./environments.ts";
-import {  eval_when_statement, eval_program, eval_try_catch_statement, eval_var_declaration } from "./eval/statements.ts";
+import {  eval_when_statement, eval_program, eval_attempt_rescue_statement, eval_var_declaration } from "./eval/statements.ts";
 import { eval_identifier, eval_binary_expr, eval_assignment, eval_object_eval } from "./eval/expressions.ts";
 import { eval_call_expr } from "./eval/expressions.ts";
 import { eval_function_declaration } from "./eval/statements.ts";
@@ -34,8 +34,8 @@ export function evaluate(astNode: Stmt, env: Environment): RuntimeVal {
         return eval_function_declaration(astNode as FunctionDeclaration, env);
         case "WhenStatement":
             return eval_when_statement(astNode as WhenStatement, env);
-        case "TryCatchStatement":
-          return eval_try_catch_statement(env, astNode as TryCatchStatement);
+        case "AttemptRescueStatement":
+          return eval_attempt_rescue_statement(env, astNode as AttemptRescueStatement);
       // Handle unimplimented ast types as error.
       default:
         console.error(
