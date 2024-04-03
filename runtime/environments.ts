@@ -1,4 +1,4 @@
-import { MK_BOOL,MK_NUMBER, MK_NULL,MK_NATIVE_FN, RuntimeVal, MK_STRING, StringVal, ObjectVal } from "./values.ts";
+import { MK_BOOL,MK_NUMBER, MK_NULL,MK_NATIVE_FN, RuntimeVal, MK_STRING, StringVal, ObjectVal, FunctionValue, NumberVal } from "./values.ts";
 
 export function createGlobalEnv() {
     
@@ -11,7 +11,7 @@ export function createGlobalEnv() {
 
     //define a native method
     env.declareVar("print", MK_NATIVE_FN((args, scope) =>{
-        console.log(...args)
+        console.log(...args);
         return MK_NULL();
     }), true)
     
@@ -24,6 +24,7 @@ export function createGlobalEnv() {
             const arg = args[i] as StringVal;
 
             res += arg.value;
+            console.log(res)
         }
 
         return MK_STRING(res);
@@ -45,6 +46,23 @@ export function createGlobalEnv() {
         return MK_STRING(res);
     }), true)
 
+    let timeoutDepth = 0;
+    let shouldExit = false;
+
+
+    env.declareVar("setTimeout", MK_NATIVE_FN((args) => {
+        const func = args.shift() as FunctionValue;
+        const time = args.shift() as NumberVal;
+        timeoutDepth++;
+        setTimeout(() => {
+            eval_function(func, []); // No args can be present here, as none are able to be given.
+            timeoutDepth--;
+            if(timeoutDepth == 0 && shouldExit) {
+                Deno.exit();
+            }
+        }, time.value);
+        return MK_NULL();
+    }), true);    
     
     
     return env;
@@ -102,4 +120,8 @@ export default class Environment {
     
         return this.parent.resolve(varname);
       }
+}
+
+function eval_function(func: FunctionValue, arg1: never[]) {
+  throw new Error("Function not implemented.");
 }
