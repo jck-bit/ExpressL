@@ -1,4 +1,4 @@
-import { ForStatement, FunctionDeclaration, WhenStatement, Stmt, TryCatchStatement } from "../../frontend/ast.ts";
+import { ForStatement, FunctionDeclaration, WhenStatement, Stmt, AttemptRescueStatement } from "../../frontend/ast.ts";
 import { Program, VarDeclaration } from "../../frontend/ast.ts";
 import Environment from "../environments.ts";
 import { evaluate } from "../interpreter.ts";
@@ -101,7 +101,7 @@ export function eval_when_statement(declaration: WhenStatement, env: Environment
 
 
 
-export function eval_try_catch_statement(env: Environment, declaration: TryCatchStatement): RuntimeVal {
+export function eval_attempt_rescue_statement(env: Environment, declaration: AttemptRescueStatement): RuntimeVal {
   const try_env = new Environment(env);
   const catch_env = new Environment(env);
 
