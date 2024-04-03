@@ -83,7 +83,7 @@ export default class Parser {
 
         let alternate: Stmt[] = [];
 
-        if (this.at().type == TokenType.Else) {
+        if (this.at().type == TokenType.Otherwise) {
             this.eat(); // eat "else"
 
             if (this.at().type == TokenType.When) {
