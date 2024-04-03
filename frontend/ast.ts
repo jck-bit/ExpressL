@@ -6,7 +6,6 @@ export type NodeType =
       | "FunctionDeclaration"
       | "WhenStatement"
       | "TryCatchStatement"
-      
       | "StringLiteral"
 
       //literals
